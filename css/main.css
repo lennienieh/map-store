@@ -10,7 +10,6 @@ html, body, body>div{
 }
 
 .nav .logo{
-    display: inline-block;
     float: left;
     width: 125px;
     height: 41px;
@@ -23,7 +22,6 @@ html, body, body>div{
 }
 
 .nav .city{
-    display: inline-block;
     float: left;
     margin-top: 7px;
     margin-left: 10px;
