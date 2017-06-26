@@ -1,0 +1,181 @@
+<div class="globalLayout">
+    <div baidu-map="gXMiRfLosX2qPaAvYOK7XsjFA058dXQV" map-ready="mapReady(map)" style="height: 100%">
+
+    </div>
+    <!-- <div class="weui-cells__title">开关</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">标题文字</div>
+            <div class="weui-cell__ft">
+                <input class="weui-switch" type="checkbox" />
+            </div>
+        </div>
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">兼容IE Edge的版本</div>
+            <div class="weui-cell__ft">
+                <label for="switchCP" class="weui-switch-cp">
+                        <input id="switchCP" class="weui-switch-cp__input" type="checkbox" checked="checked" ng-model="x"/>
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div class="parkingSearchArea">
+        <div class="weui-search-bar borderRadius" id="searchBar">
+            <form class="weui-search-bar__form" id="searchForm" action="" onsubmit="return false">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search" ng-click="commitSearch()"></i>
+                    <input type="search" name="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required/>
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                </div>
+                 <label class="weui-search-bar__label" id="searchText">
+                      <i class="weui-icon-search"></i>
+                      <span>搜索</span>
+
+
+                </label>
+                <!-- <a class="" href="javascript:;" ng-click="commitSearch();">搜索</a> -->
+
+            </form>
+            <!-- <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a> -->
+
+            <a href="javascript:" id="confirmSearchBtn" class="weui-search-bar__cancel-btn" ng-click="commitSearch()" style="color:#09bb07">确定</a>
+            <a class="weui-search-bar__cancel-btn" ng-click="urlparkinglist()" style="display: block;border-left: 1px solid #ddd;padding-left: 10px;color:#626262;">列表</a>
+        </div>
+         <!-- <div class="parkinglsit">
+             <a ng-click="urlparkinglist()">列表</a>
+        </div> -->
+    </div>
+    <div class="parkingRightArea">
+        <ul>
+            <li>
+                <img ng-src="{{trafficImg}}" alt="" ng-click="showTrafficLayer()">
+            </li>
+            <li>
+                <img ng-src="{{filterImg}}" alt="" ng-click="toFilter()">
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="filterArea" style="display:none">
+    <p>停车场类型</p>
+    <div class="filterUl">
+        <ul class="parkingType">
+            <li data-type="1">合作停车场</li>
+            <li data-type="2">路边停车场</li>
+            <!-- <li data-type="3">私人停车位</li> -->
+            <!-- <li data-type="4">无地磁停车场</li>
+            <li data-type="0">百度停车场</li> -->
+        </ul>
+    </div>
+    <!-- <div class="filterM"> -->
+        <!-- <div class="pull-left filterActivity"> -->
+            <!-- <p>优惠活动</p>
+            <ul class="parkingType">
+                <li class="pull-left" data-discount="1">满减</li>
+                <li class="pull-left" data-discount="2">立减</li>
+            </ul> -->
+        <!-- </div> -->
+        <!-- <div class="pull-left filterMonth"> -->
+            <!-- <p>包月</p>
+            <ul class="parkingType">
+                <li>已包月</li>
+            </ul> -->
+        <!-- </div> -->
+    <!-- </div> -->
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell weui-cell_switch">
+          <div class="weui-cell__bd">显示空车位</div>
+          <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" data-filterBtn = 'isSpaces'/>
+          </div>
+        </div>
+        <div class="weui-cell weui-cell_switch">
+          <div class="weui-cell__bd">在线支付{{getFliterBtn.is_pay}}</div>
+          <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" data-filterBtn = 'is_pay'/>
+
+          </div>
+        </div>
+        <div class="weui-cell weui-cell_switch">
+          <div class="weui-cell__bd">可预约停车</div>
+          <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" data-filterBtn = 'bespeak'/>
+          </div>
+        </div>
+        <div class="weui-cell weui-cell_switch">
+          <div class="weui-cell__bd">可充电</div>
+          <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" data-filterBtn = 'charging_pile'/>
+          </div>
+        </div>
+        <div class="weui-cell weui-cell_switch">
+          <div class="weui-cell__bd">24小时停车场</div>
+          <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" data-filterBtn = 'open24h'/>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="positionMark" style="display:none">
+      <h5 class="text-left parkingTitle">上海喜来了投资有限公司停车场</h5>
+      <br>
+      <p class="text-left commonGrey pull-left">
+        <span>评分：</span>
+        <div star rating-value="ratingVal" max="max" on-hover="onHover" on-leave="onLeave" readonly="{{readonly}}" class="pull-left"></div>
+
+      </p>
+      <br>
+      <p class="text-left commonGrey clearBoth spanceParking">
+        <span>空车位：</span>
+        <span>
+          <span class="freeParking spaceCar">12</span>
+          <span>/ <i class="allSpaceCar">24</i></span>
+          &nbsp
+          <span>
+            <img src="/images/car-s03.png" alt="" class="privateCar">
+            <img src="/images/car-s02.png" alt="" class="isCoupon">
+            <img src="/images/car-s01.png" alt="" class="fullHours">
+          </span>
+        </span>
+
+      </p>
+      <br>
+      <p class="text-left">
+        <span>地址：</span>
+       <span class="parkingAdd"></span>
+      </p>
+
+      <div class="displayFlag">
+        <hr>
+        <br>
+        <p class="text-left">
+          <span>物业电话：</span>
+         <span class="foundTel"></span>
+        </p>
+        <br>
+        <p class="text-left">
+          <span>当前距离：</span>
+         <span class="parkingDis"></span>
+        </p>
+        <br>
+        <p class="text-left">
+          <span>车位情况：</span>
+         <span>空车位：<span class="spaceCar"></span>&nbsp&nbsp&nbsp总车位：<span class="allSpaceCar"></span></span>
+        </p>
+      </div>
+      <!-- <br> -->
+      <div>
+        <img src="/images/Chevron.png" alt="" class="showFlag arrowBot">
+      </div>
+  </div>
+  <style media="screen">
+    .layui-m-layercont{
+      padding-bottom: 0 !important;
+    }
+  </style>

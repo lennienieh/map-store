@@ -1,0 +1,5 @@
+define([
+    './mod',
+    'config',
+    'noHttpInjectUrl'
+]);
